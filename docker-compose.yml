@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    volumes:
+      - .:/usr/src/app           # Kodları Windows’tan mount et
+      - /usr/src/app/node_modules # node_modules çakışmasın diye ayrı mount
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=testuser
+      - DB_PASSWORD=testpass
+      - DB_NAME=testdb
+      - EXTERNAL_API_URL=https://external-api.example.com
+      - EXTERNAL_API_TOKEN=your-token
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=testuser
+      - POSTGRES_PASSWORD=testpass
+      - POSTGRES_DB=testdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
