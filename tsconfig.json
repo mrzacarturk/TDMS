@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    
+    // NestJS ve TypeORM için ZORUNLU dekoratör desteği
+    "experimentalDecorators": true, 
+    "emitDecoratorMetadata": true, 
+    
+    // Modül Çözümleme Ayarları
+    "target": "ES2020",
+    "module": "commonjs",
+    "rootDir": "./src", // Genellikle baseUrl ile uyumlu olmalı
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true, 
+    "strict": true,
+    "skipLibCheck": true,
+    
+      // Yol Haritaları (Path Mapping) Ayarları
+    "baseUrl": "./src", 
+    "paths": {
+      "@entities/*": ["entities/*"], 
+      "@config/*": ["config/*"],
+      "@/*": ["*"] // Genellikle src klasöründeki her şeye erişim için eklenir
+    }
+  },
+  "include": ["src/**/*"] // Sadece src klasörünü derle
+}

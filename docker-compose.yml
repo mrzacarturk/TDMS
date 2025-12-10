@@ -19,6 +19,8 @@ services:
       - "4000:4000"
     depends_on:
       - db
+    # mem_limit:
+    #   4096m
 
   db:
     image: postgres:16-alpine
